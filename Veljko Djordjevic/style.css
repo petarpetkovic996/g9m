@@ -1,0 +1,81 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+nav a:hover {
+  background-color: #555;
+}
+
+#home, #about, #services, #contact {
+  margin: 50px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#home {
+  text-align: center;
+}
+
+#home h1 {
+  margin-bottom: 20px;
+}
+
+#about, #services, #contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#about img, #services img {
+  width: 30%;
+  margin-right: 20px;
+}
+
+#about, #services, #contact h2 {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#about p, #services p, #contact p {
+  width: 65%;
+}
+
+/* Add custom scroll */
+#home, #about, #services, #contact {
+  overflow: auto;
+}
+#drglt{
+    text-align: center;
+    font-size: 40px;
+}
+#draza{
+  text-align: center;
+  padding: 10px;
+  font-family: sans-serif;
+  text-shadow: 1px 1px 1px red;
+}
+#sldr{
+    margin-left: auto;
+  margin-right: auto;  
+}
