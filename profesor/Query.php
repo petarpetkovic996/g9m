@@ -2,25 +2,58 @@
 
 class Query
 {
-    private $connection;
+    /**
+     * @var mysqli
+     */
+    private mysqli $connection;
+
+    /**
+     * @var string
+     */
+    private string $server = 'localhost';
+
+    /**
+     * @var string
+     */
+    private string $dbUsername = 'root';
+
+    /**
+     * @var string
+     */
+    private string $dbPassword = 'root';
+
+    /**
+     * @var string
+     */
+    private string $database = 'tribute';
 
     public function __construct()
     {
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "tribute";
-
-        $this->connection = new mysqli($servername, $username, $password, $dbname);
+        $this->connection = new mysqli(
+            $this->server,
+            $this->dbUsername,
+            $this->dbPassword,
+            $this->database
+        );
 
         if ($this->connection->connect_error) {
             die("Connection failed: " . $this->connection->connect_error);
         }
     }
 
-    public function execute($sql)
+    /**
+     * Execute the SQL query
+     *
+     * @param $sql
+     * @return array
+     */
+    public function execute($sql): array
     {
         $result = $this->connection->query($sql);
+
+        if (!$result) {
+            return [];
+        }
 
         $rows = [];
         while($rowData = $result->fetch_assoc()) {
@@ -32,7 +65,12 @@ class Query
         return $rows;
     }
 
-    private function closeConnection()
+    /**
+     * Close the active DB connection
+     *
+     * @return void
+     */
+    private function closeConnection(): void
     {
         $this->connection->close();
     }
