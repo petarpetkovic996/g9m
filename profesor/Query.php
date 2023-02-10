@@ -20,7 +20,7 @@ class Query
     /**
      * @var string
      */
-    private string $dbPassword = 'root';
+    private string $dbPassword = '';
 
     /**
      * @var string
