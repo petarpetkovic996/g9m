@@ -10,40 +10,18 @@
 </style>
 <body>
     <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "tribute";
+        include_once 'Query.php';
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT first_name, last_name, image, dob, description, state FROM person";
-        $result = $conn->query($sql);
-
-        $rows = [];
-        while($row = $result->fetch_assoc()) {
-            $rows = [
-                'first_name' => $row['first_name'],
-                'last_name' => $row['last_name'],
-                'dob' => $row['dob'],
-                'image' => $row['image'],
-                'description' => $row['description'],
-                'state' => $row['state'],
-            ];
-        }
+        $query = new Query();
+        $sql = "SELECT * FROM person";
+        $rows = $query->execute($sql);
     ?>
-	<h1><?php echo $rows['first_name'] . " " . $rows['last_name']; ?></h1>
-	<h2>Date of Birth : <?php echo $rows['dob']; ?></h2>
-	<h2>State: <?php echo $rows['state']; ?></h2>
+	<h1><?php echo $rows[0]['first_name'] . " " . $rows[0]['last_name']; ?></h1>
+	<h2>Date of Birth : <?php echo $rows[0]['dob']; ?></h2>
+	<h2>State: <?php echo $rows[0]['state']; ?></h2>
 	<br>
-    <p><?php echo $rows['description']; ?></p>
-	<img src="<?php echo $rows['image']; ?>" alt="Black hole">
+    <p><?php echo $rows[0]['description']; ?></p>
+	<img src="<?php echo $rows[0]['image']; ?>" alt="Black hole">
 
 </body>
 </html>
